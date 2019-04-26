@@ -21,7 +21,7 @@ contract Ownable {
         emit OwnershipTransferredTo(_owner);
     }
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
-    modifier onlyOnwer() {
+    modifier onlyOwner() {
         require(_owner == msg.sender, "Not allowed to perform this as you are not the owner of the contract");
         _;
     }
@@ -36,11 +36,11 @@ contract Ownable {
 }
 
 //  TODO's: Create a Pausable contract that inherits from the Ownable contract
-contract Pausable {
+contract Pausable is Ownable {
     //  1) create a private '_paused' variable of type bool
     bool private _paused;
     //  2) create a public setter using the inherited onlyOwner modifier 
-    function setPausedStateTo(bool pausedState) {
+    function setPausedStateTo(bool pausedState) public onlyOwner {
         _paused = pausedState;
     }
 
@@ -148,7 +148,7 @@ contract ERC721 is Pausable, ERC165 {
     function approve(address to, uint256 tokenId) public {
         address tokenOwner = _tokenOwner[tokenId];
         // TODO require the given address to not be the owner of the tokenId
-        require(to != tokenOwner , "this address is already the owner of the token with id " + tokenId);
+        require(to != tokenOwner , "this address is already the owner of the token");
         // TODO require the msg sender to be the owner of the contract or isApprovedForAll() to be true
         require(msg.sender == tokenOwner || isApprovedForAll(tokenOwner, msg.sender) , "You are not the owner of the contract or not approved for all.");
         // TODO add 'to' address to token approvals
@@ -520,9 +520,9 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //      -calls the superclass mint and setTokenURI functions
 
 contract KostasCapstone is ERC721Metadata ("KostasCapstone", "KON", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
-    function mint(address to, uint256 tokenId, strng memory tokenURI) public onlyOwner returns (bool) {
+    function mint(address to, uint256 tokenId, string memory tokenURI) public onlyOwner returns (bool) {
         _mint(to, tokenId);
-        setTokenURI(tokenURI);
+        setTokenURI(tokenId);
         return true;
     }
 }
