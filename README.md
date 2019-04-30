@@ -31,13 +31,14 @@ ABI can be found at `eth-contracts/build/contracts/KostasCapstone.json`.
 
 ### Verifier Contract:
 ```bash
-Replacing 'Verifier'
+
+ Replacing 'Verifier'
    --------------------
-   > transaction hash:    0x9d85fc7a748b074d77d2a465180b916105cddc6356ba88cbfca92b947be05c6d
+   > transaction hash:    0x33097c9cf8fba9566b459f33b76c59834fb543d1aaded1ff2442d13b0500c643
    > Blocks: 0            Seconds: 8
-   > contract address:    0x5e161fe70b89Fb73AdcDe24962FDEA5bc406d4A0
+   > contract address:    0x7bB309394aD83C51F949f58f6B4ccDc3236946F6
    > account:             0xfE6B6593Ee06138Ee6Bd2B1C53a7061944dB2277
-   > balance:             45.2193745
+   > balance:             44.842197908
    > gas used:            1717075
    > gas price:           10 gwei
    > value sent:          0 ETH
@@ -46,15 +47,15 @@ Replacing 'Verifier'
 
    Replacing 'SolnSquareVerifier'
    ------------------------------
-   > transaction hash:    0xfc418cc926c91b475a41c77014949dca88eb276a3116e470367d9fce72619bbb
+   > transaction hash:    0xfe748196814ac3ddfa5ebbe99610b2d78ef01c276370fc1a9f1e9212b69874e7
    > Blocks: 0            Seconds: 8
-   > contract address:    0x83027dfE14E63f59B795D0a9113e00bA4f00DAa8
+   > contract address:    0xECc9b2FC8a163C252c2D6Cb4870dC9cEf7555374
    > account:             0xfE6B6593Ee06138Ee6Bd2B1C53a7061944dB2277
-   > balance:             45.17817128
-   > gas used:            4120322
+   > balance:             44.800138228
+   > gas used:            4205968
    > gas price:           10 gwei
    > value sent:          0 ETH
-   > total cost:          0.04120322 ETH
+   > total cost:          0.04205968 ETH
 
 ```
 

@@ -16,16 +16,7 @@ async function minting(i) {
     if (contractAddress) {
         const nftContract = new web3js.eth.Contract(ABI, contractAddress, { from: ownerAddress, gasLimit: "1000000" });
         try {
-            const mintingResponse = await nftContract.methods.mintNewNFT(secondAddress, 1
-
-
-
-
-
-
-
-
-                , proofs[i].proof.A,
+            const mintingResponse = await nftContract.methods.mintNewNFT(secondAddress, 1, proofs[i].proof.A,
                 proofs[i].proof.A_p,
                 proofs[i].proof.B,
                 proofs[i].proof.B_p,

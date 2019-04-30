@@ -1,5 +1,5 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const mnemonic = 'warrior kangaroo tank foil culture such ceiling dawn orchard eternal fetch usual';
+const mnemonic = 'lazy force country patch truth jar test photo page middle trip knee';
 
 module.exports = {
   networks: {

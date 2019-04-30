@@ -8,17 +8,21 @@ import "./Oraclize.sol";
 
 contract Ownable {
     //  TODO's
+    
     //  1) create a private '_owner' variable of type address with a public getter function
     address private _owner;
+    
     //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
-    event OwnershipTransferredTo(address newOwner);
-    function getOwner() public returns(address){
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    function owner() public view returns(address){
         return _owner;
     }
-    //  2) create an internal constructor that sets the _owner var to the creater of the contract 
+    
+    //  2) create an internal constructor that sets the _owner var to the creater of the contract
     constructor() internal {
         _owner = msg.sender;
-        emit OwnershipTransferredTo(_owner);
+        emit OwnershipTransferred(address(0), _owner);
     }
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
     modifier onlyOwner() {
@@ -31,7 +35,7 @@ contract Ownable {
         // make sure the new owner is a real address
         require(newOwner != address(0));
         _owner = newOwner;
-        emit OwnershipTransferredTo(_owner);
+        emit OwnershipTransferred(_owner, newOwner);
     }
 }
 
@@ -39,7 +43,7 @@ contract Ownable {
 contract Pausable is Ownable {
     //  1) create a private '_paused' variable of type bool
     bool private _paused;
-    //  2) create a public setter using the inherited onlyOwner modifier 
+    //  2) create a public setter using the inherited onlyOwner modifier
     function setPausedStateTo(bool pausedState) public onlyOwner {
         _paused = pausedState;
     }
@@ -53,6 +57,12 @@ contract Pausable is Ownable {
         require(_paused != false, "cannot execute that as the contruct is not paused");
         _;
     }
+
+    modifier whenPaused() {
+        require(_paused == true, "currently not Paused");
+        _;
+    }
+
 //  5) create a Paused & Unpaused event that emits the address that triggered the event
     event Paused(address caller);
     event Unpaused(address caller);
@@ -102,7 +112,7 @@ contract ERC721 is Pausable, ERC165 {
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-    
+
     using SafeMath for uint256;
     using Address for address;
     using Counters for Counters.Counter;
@@ -244,7 +254,7 @@ contract ERC721 is Pausable, ERC165 {
         require(from != address(0x0), "invalid address");
         // TODO: clear approval
         _clearApproval(tokenId);
-        // TODO: update token counts & transfer ownership of the token ID 
+        // TODO: update token counts & transfer ownership of the token ID
         _tokenOwner[tokenId] = to;
         _ownedTokensCount[from].decrement();
         _ownedTokensCount[to].increment();
@@ -453,11 +463,11 @@ contract ERC721Enumerable is ERC165, ERC721 {
 }
 
 contract ERC721Metadata is ERC721Enumerable, usingOraclize {
-    
+
     // TODO: Create private vars for token _name, _symbol, and _baseTokenURI (string)
     string private _name;
     string private _symbol;
-    string private _baseTokenURI; 
+    string private _baseTokenURI;
 
     // TODO: create private mapping of tokenId's to token uri's called '_tokenURIs'
     mapping(uint256 => string) _tokenURIs;
@@ -480,15 +490,21 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     }
 
     // TODO: create external getter functions for name, symbol, and baseTokenURI
-    function getTokenName() public returns (string memory) {
+    function name() external view returns (string memory) {
         return _name;
     }
 
-    function getTokenSymbol() public returns (string memory) {
+    function symbol() external view returns (string memory) {
         return _symbol;
     }
 
-    function getBaseTokenURI() public returns (string memory) {
+    function getBaseTokenURI() public returns (
+                                      string memory
+                                    ) {
+        return _baseTokenURI;
+    }
+
+    function baseTokenURI() external view returns (string memory) {
         return _baseTokenURI;
     }
 
@@ -504,7 +520,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     // TIP #2: you can also use uint2str() to convert a uint to a string
         // see https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol for strConcat()
     // require the token exists before setting
-    function setTokenURI(uint256 tokenId) internal {
+    function setTheTokenURI(uint256 tokenId) internal {
         require(_exists(tokenId), "Unknown tokenId");
         _tokenURIs[tokenId] = strConcat(_baseTokenURI, uint2str(tokenId));
     }
@@ -519,10 +535,10 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //      -returns a true boolean upon completion of the function
 //      -calls the superclass mint and setTokenURI functions
 
-contract KostasCapstone is ERC721Metadata ("KostasCapstone", "KON", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
+contract KostasCapstone is ERC721Metadata ("KostasCapstone", "KC", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
     function mint(address to, uint256 tokenId, string memory tokenURI) public onlyOwner returns (bool) {
         _mint(to, tokenId);
-        setTokenURI(tokenId);
+        setTheTokenURI(tokenId);
         return true;
     }
 }
