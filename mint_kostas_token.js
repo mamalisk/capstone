@@ -2,7 +2,7 @@ const HDWalletProvider = require("truffle-hdwallet-provider")
 const web3 = require('web3')
 const mnemonic = "warrior kangaroo tank foil culture such ceiling dawn orchard eternal fetch usual";
 const infuraKey = "a2c6c372da78434d9d150bc66ea884aa";
-const contractAddress = "0x31e7fAeb080CBa1668C6c69D77892733A759ec7f";
+const contractAddress = "0x83027dfE14E63f59B795D0a9113e00bA4f00DAa8";
 const ownerAddress = "0xfE6B6593Ee06138Ee6Bd2B1C53a7061944dB2277";
 const secondAddress = "0x09F3893373342BcDA362dDAcbbaB93B848aF248f";
 const network = "rinkeby";
@@ -16,7 +16,16 @@ async function minting(i) {
     if (contractAddress) {
         const nftContract = new web3js.eth.Contract(ABI, contractAddress, { from: ownerAddress, gasLimit: "1000000" });
         try {
-            const mintingResponse = await nftContract.methods.mintNewNFT(secondAddress, 5, proofs[i].proof.A,
+            const mintingResponse = await nftContract.methods.mintNewNFT(secondAddress, 1
+
+
+
+
+
+
+
+
+                , proofs[i].proof.A,
                 proofs[i].proof.A_p,
                 proofs[i].proof.B,
                 proofs[i].proof.B_p,

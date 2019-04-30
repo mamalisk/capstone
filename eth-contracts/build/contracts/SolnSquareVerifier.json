@@ -5198,14 +5198,136 @@
   },
   "networks": {
     "4": {
-      "events": {},
+      "events": {
+        "0x8f30b3183c661e59e711a4a8021d8ab675a66c73543c932fec8e610640205d5d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "solution",
+              "type": "address"
+            }
+          ],
+          "name": "solutionWasAdded",
+          "type": "event",
+          "signature": "0x8f30b3183c661e59e711a4a8021d8ab675a66c73543c932fec8e610640205d5d"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event",
+          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        },
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "approved",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event",
+          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+        },
+        "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "operator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "approved",
+              "type": "bool"
+            }
+          ],
+          "name": "ApprovalForAll",
+          "type": "event",
+          "signature": "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "caller",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event",
+          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "caller",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event",
+          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+        },
+        "0xd01b6711a01aedb9d2e86efffdb4e2160ef024e1037e2119f29c072da5355ae0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferredTo",
+          "type": "event",
+          "signature": "0xd01b6711a01aedb9d2e86efffdb4e2160ef024e1037e2119f29c072da5355ae0"
+        }
+      },
       "links": {},
-      "address": "0x31e7fAeb080CBa1668C6c69D77892733A759ec7f",
-      "transactionHash": "0xc6493ebf4bdf960471bf9657b67ea10cec054acde9cad274a31cfcbead5a1a6c"
+      "address": "0x83027dfE14E63f59B795D0a9113e00bA4f00DAa8",
+      "transactionHash": "0xfc418cc926c91b475a41c77014949dca88eb276a3116e470367d9fce72619bbb"
     }
   },
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-30T03:39:28.569Z",
+  "schemaVersion": "3.0.0",
+  "updatedAt": "2019-04-30T04:12:43.779Z",
   "devdoc": {
     "methods": {
       "isApprovedForAll(address,address)": {
