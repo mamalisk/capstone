@@ -4,7 +4,7 @@ const mnemonic = "warrior kangaroo tank foil culture such ceiling dawn orchard e
 const infuraKey = "a2c6c372da78434d9d150bc66ea884aa";
 const contractAddress = "0x31e7fAeb080CBa1668C6c69D77892733A759ec7f";
 const ownerAddress = "0xfE6B6593Ee06138Ee6Bd2B1C53a7061944dB2277";
-const secondAddress = "0x4e26a3225477486a12505b76E6529Bf6489bA934";
+const secondAddress = "0x09F3893373342BcDA362dDAcbbaB93B848aF248f";
 const network = "rinkeby";
 
 const proofs = require('./proofs');
