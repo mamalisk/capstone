@@ -65,7 +65,7 @@ contract("Verifier", accounts => {
 
     // Test if a new solution can be added for contract - SolnSquareVerifier
 
-    it("should add a new solution", async function() {
+    it("should add a new solution and not allow the same solution to be added more than once", async function() {
       const token = await this.contract.mintNewNFT.call(
         account_20,
         20,
@@ -80,8 +80,28 @@ contract("Verifier", accounts => {
         proof.input,
         { from: account_one }
       );
-
       assert.equal(token, true);
+
+
+      try {
+        await this.contract.contract.methods.mintNewNFT(
+        account_20,
+        20,
+        proof.proof.A,
+        proof.proof.A_p,
+        proof.proof.B,
+        proof.proof.B_p,
+        proof.proof.C,
+        proof.proof.C_p,
+        proof.proof.H,
+        proof.proof.K,
+        proof.input
+      ).send({ from: account_one });
+      assert.fail();
+
+        } catch (error) {
+          // passed!
+        }
     });
   });
 });

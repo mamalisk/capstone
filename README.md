@@ -13,7 +13,7 @@ The capstone will build upon the knowledge you have gained in the course in orde
 Start Ganache:
 
 ```bash
-ganache-cli -m "shadow estate visa inform tide often puppy comfort stove course garden exist"  -a 45 -l 80000000000
+ganache-cli -m "lazy force country patch truth jar test photo page middle trip knee"  -a 45 -l 80000000000
 ```
 and on another terminal tab/window perform the following steps:
 
@@ -56,11 +56,11 @@ ABI can be found at `eth-contracts/build/contracts/KostasCapstone.json`.
    > gas price:           10 gwei
    > value sent:          0 ETH
    > total cost:          0.04228727 ETH
-   
+
 ```
 
 ### OpenSea MarketPlace Site:
-https://rinkeby.opensea.io/category/kostascapstone
+https://rinkeby.opensea.io/assets/kostascapstone 
 
 
 

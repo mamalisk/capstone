@@ -1,10 +1,10 @@
 const HDWalletProvider = require("truffle-hdwallet-provider")
 const web3 = require('web3')
-const mnemonic = "warrior kangaroo tank foil culture such ceiling dawn orchard eternal fetch usual";
+const mnemonic = "lazy force country patch truth jar test photo page middle trip knee";
 const infuraKey = "a2c6c372da78434d9d150bc66ea884aa";
-const contractAddress = "0x83027dfE14E63f59B795D0a9113e00bA4f00DAa8";
-const ownerAddress = "0xfE6B6593Ee06138Ee6Bd2B1C53a7061944dB2277";
-const secondAddress = "0x09F3893373342BcDA362dDAcbbaB93B848aF248f";
+const contractAddress = "0xb62185B7D7819ec581fdE850D11EdbBE536D2421";
+const secondAddress = "0xfE6B6593Ee06138Ee6Bd2B1C53a7061944dB2277";
+const ownerAddress = "0x09F3893373342BcDA362dDAcbbaB93B848aF248f";
 const network = "rinkeby";
 
 const proofs = require('./proofs');

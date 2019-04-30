@@ -61,8 +61,8 @@ function addSolution( address Address, uint256 Id, bytes32 solutionHash) public 
 
         //hash submitted solution solution 
         bytes32 solutionHash = keccak256(abi.encodePacked(a, a_p, b, b_p, c, c_p, h, k, input));
-        require(solutions[solutionHash].Address == address(0), "solution exists");
-        addSolution( Address, Id,solutionHash);
+        require(solutions[solutionHash].Id != Id && solutions[solutionHash].Address == address(0), "solution exists");
+        addSolution(Address, Id, solutionHash);
         return mint(Address, Id, "url");
     }
   
