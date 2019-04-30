@@ -6,36 +6,75 @@ import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol';
 import "./Oraclize.sol";
 
+/**
+ * @title Ownable
+ * @dev The Ownable contract has an owner address, and provides basic authorization control
+ * functions, this simplifies the implementation of "user permissions".
+ */
 contract Ownable {
-    //  TODO's
-    
-    //  1) create a private '_owner' variable of type address with a public getter function
     address private _owner;
-    
-    //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
+
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    function owner() public view returns(address){
-        return _owner;
-    }
-    
-    //  2) create an internal constructor that sets the _owner var to the creater of the contract
-    constructor() internal {
+    /**
+     * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+     * account.
+     */
+    constructor () internal {
         _owner = msg.sender;
         emit OwnershipTransferred(address(0), _owner);
     }
-    //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
+
+    /**
+     * @return the address of the owner.
+     */
+    function owner() public view returns (address) {
+        return _owner;
+    }
+
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
     modifier onlyOwner() {
-        require(_owner == msg.sender, "Not allowed to perform this as you are not the owner of the contract");
+        require(isOwner(), "Ownable: caller is not the owner");
         _;
     }
-    //  4) fill out the transferOwnership function
+
+    /**
+     * @return true if `msg.sender` is the owner of the contract.
+     */
+    function isOwner() public view returns (bool) {
+        return msg.sender == _owner;
+    }
+
+    /**
+     * @dev Allows the current owner to relinquish control of the contract.
+     * It will not be possible to call the functions with the `onlyOwner`
+     * modifier anymore.
+     * @notice Renouncing ownership will leave the contract without an owner,
+     * thereby removing any functionality that is only available to the owner.
+     */
+    function renounceOwnership() public onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+    }
+
+    /**
+     * @dev Allows the current owner to transfer control of the contract to a newOwner.
+     * @param newOwner The address to transfer ownership to.
+     */
     function transferOwnership(address newOwner) public onlyOwner {
-        // TODO add functionality to transfer control of the contract to a newOwner.
-        // make sure the new owner is a real address
-        require(newOwner != address(0));
-        _owner = newOwner;
+        _transferOwnership(newOwner);
+    }
+
+    /**
+     * @dev Transfers control of the contract to a newOwner.
+     * @param newOwner The address to transfer ownership to.
+     */
+    function _transferOwnership(address newOwner) internal {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
         emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
     }
 }
 
@@ -496,12 +535,6 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 
     function symbol() external view returns (string memory) {
         return _symbol;
-    }
-
-    function getBaseTokenURI() public returns (
-                                      string memory
-                                    ) {
-        return _baseTokenURI;
     }
 
     function baseTokenURI() external view returns (string memory) {
